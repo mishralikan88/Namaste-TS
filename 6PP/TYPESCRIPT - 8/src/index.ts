@@ -62,15 +62,28 @@ const user: readOnlyuserType = {
 
 // ==================================================================================================================================
 
-//Record<unionProperty,subtypeofunionProperty-(interface/type Name)>
+//Record Synatx - Record<unionSeparatedprops,TypeName/InterfaceName> where TypeName/InterfaceName or type applies to all union separated props.
+
+
+
+// example 1
+type UserRecord = {
+  name:string;
+  email:string;
+  address:string
+}
+
+type user1 = Record<"name"|"email"|"address",string>
+
+// user1 & UserRecord are equal
+
+// example 2
 
 interface UserInfo {
   age: number;
 }
 
-type userName = "Amar" | "Lycan" | "Levi" | "Lisa"; // list of properties separated by union operator |.We have a common type for these properties which is userName
-
-// for each and every property we must provide its sub type information . In our case interface properties for each indivisual union property
+type userName = "Amar" | "Lycan" | "Levi" | "Lisa"; 
 
 const users: Record<userName, UserInfo> = {
   Amar: { age: 24 },
@@ -100,11 +113,12 @@ type ShippingInfo = Omit<orderInfo, "city" | "state" | "country">; // omits spec
 
 // ===================================================================================================================================
 
-// Exclude <Type,ExcludedUnion>
-// type Random = Exclude<string | number, number>; // exclude number from string and number type a create a new type random
+// Exclude <propsSeparatedbyUnion,excludedType>
+// type Random = Exclude<string | number | boolean, number>; // exclude number from string , number & boolean types a create a new type Random.
+// Random types allows only string and boolean types.type Random = string | boolean
 
 // Extract<Type,Union>
-// type Random = Extract<string | number, number>; // extract number from string and number type a create a new type random
+// type Random = Extract<string | number | boolean, number>; // extract number from string | number | boolean type and create a new type random. type of Random is number
 
 // NonNullable<Type>
 type myUnion = string | number | boolean | null | undefined;
@@ -120,7 +134,7 @@ const myFunc = (a: string, b: string) => {
 };
 
 
-type parameterTypes = Parameters<typeof myFunc> // parameterTypes is an array of two strings.[a: string, b: string]
+type parameterTypes = Parameters<typeof myFunc> // parameterTypes = [a: string, b: string]
 
 
 // ConstructorParameter<Type>

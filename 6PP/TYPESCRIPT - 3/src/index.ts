@@ -12,9 +12,9 @@ console.log(a)
 
 // Defining type for a function expression 
 
-type UserName = (n:number,m:number) => number
+type additionType = (n:number,m:number) => number
 
-const add:UserName = (n,m) => n + m // no need to define type for n and m and return type for the function add because we have already defined these types in a type Username and we have set this type for the add function.
+const add:additionType = (n,m) => n + m // No need to define type explicitly for n and m & return type because we have already defined these types in type additionType & we have set this type for add function.
 
 const additionresult = add(1,2)
 
@@ -23,13 +23,13 @@ console.log(additionresult)
 
 //==========================================================================================================================
 
-const arr1 = [12,24,36,48] //  Array declaration and initialization
+const arr4:Array<number> = new Array(20)  // Array declaration using Generics.
 
-const arr2:number[] = [12,24,36,48] // Array declaration and initialization with type declaration
+const arr3:Array<number> = [1,2,3] // Array declaration with initialisation using Generics.
 
-const arr3:Array<number> = [1,2,3] // Array declaration and initialisation using generics
+const arr1 = [12,24,36,48]  // Array declaration with initialization.
 
-const arr4:Array<number> = new Array(20)  // Array declaration 
+const arr2:number[] = [12,24,36,48] // Array declaration with initialization with Type annotation.
 
 const arr5:Array<number|string> = new Array(20)  // Array declaration with multiple type annotations.Array will take the elements with the types specified. 
 
@@ -100,7 +100,7 @@ const objectI:objI = {
   gender:"Female" 
 }
 
-// difference between types and interface is interface can expand using inheritance but type wont expland .type  is fixed 
+
 
 interface ObjA{
   height:number,

@@ -1,3 +1,6 @@
+// Revise this chapter.
+
+
 // Type assertion - Type casting
 
 // const btn = document.getElementById("btn");
@@ -12,15 +15,15 @@
 
 // way2 - Type assertion
 
-//const btn = <HTMLElement>document.getElementById("btn");
+// const btn = <HTMLElement>document.getElementById("btn");
 
 // way3 - Type assertion
 
-//const btn = document.getElementById("btn")!;
+// const btn = document.getElementById("btn")!;
 
 // btn.onclick;
 
-// const img = document.getElementById("myImg")!;
+// const img = document.getElementById("myImg");
 // img.src // src is not present in img element
 
 // we have to tell type script specifically that img is html element.
@@ -30,7 +33,7 @@
 // const form = document.getElementById("myForm") as HTMLFormElement;
 // const myinput = document.querySelector("form > input") as HTMLInputElement;
 // form.onsubmit = (e) => {
-//   e.preventDefault(); // prevents default behavior of the browser like page refreshing and all
+//   e.preventDefault(); // prevents default behavior of the browser.
 //   const value = Number(myinput.value);
 //   // console.log(value);
 //   // console.log(typeof value);
@@ -40,7 +43,7 @@
 //   body.append(h2)
 // };
 
-// =====================
+// =====================================================================================================================================
 
 // For dynamic object we can manipulate properties inside of it.We can add new properties , remove properties etc.
 // while defining Type or interface , We useally define a general type for these properties.

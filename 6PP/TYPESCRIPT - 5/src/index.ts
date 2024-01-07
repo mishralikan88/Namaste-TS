@@ -43,7 +43,7 @@ type getDataType = (product: Product) => void;
 
 const getData: getDataType = (product) => {
   console.log(">>>>>>>>>>");
-//   product.id = "asdasdasasdasdad"; // cannot be changed as this is read only property being set in interface
+  //   product.id = "asdasdasasdasdad"; // cannot be changed as this is read only property being set in interface
   console.log(product);
 };
 
@@ -62,15 +62,16 @@ getData(productone);
 // ============================
 // Never type
 
-const errorHandler = ():never => { // when we throw error in that case never type is returned.return type = never    
+const errorHandler = (): never => {
+  // when we throw error in that case never type is returned.return type is never
   throw new Error();
 };
 
 const errorHandler2 = () => {
-    return new Error(); // return type is Error
-  };
+  return new Error(); // return type is Error
+};
 
-  // ===============
-  type themeMode = "light" | "dark"
-  const mode:themeMode = "light"
-  // const mode2:themeMode = "asdasdasd" // error 
+// ===============
+type themeMode = "light" | "dark";
+const mode: themeMode = "light";
+// const mode2:themeMode = "asdasdasd" // error

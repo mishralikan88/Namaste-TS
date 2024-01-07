@@ -33,7 +33,7 @@ test = 565 // or test = "Hello" ==> this test could be either a number or a stri
 
 // functions 
 // while defining a function we must provide the types of the arguments the function is taking 
-// we can definine the return types and this is optional . if we dont provide the return type , by default the returning value type will be decided for a function implicitly.This is dione by type script compiler.
+// we can define the return types and this is optional . if we dont provide the return type , by default the returning value type will be decided for a function implicitly.This is done by type script compiler.
 
 const func = (n:number,m:number):void =>{
     console.log(n)

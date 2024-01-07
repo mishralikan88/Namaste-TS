@@ -203,4 +203,4 @@
   console.log(product.name)
 
 
-  // Abstract classes - check online - use case is less likely
+  // Abstract classes 

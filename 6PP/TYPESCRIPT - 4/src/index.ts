@@ -1,4 +1,4 @@
-// optional parameter and optional argument 
+// optional parameter & optional argument 
 
 
 type FuncType = (n: number, m: number, l?: number) => number;
@@ -18,7 +18,7 @@ const withlvalue=func(10, 20, 40);
 
 type FuncTypedefault = (n: number, m: number, l?: number) => number;
 
-const funcdefault: FuncType = (n, m, l=20) => {
+const funcdefault: FuncTypedefault = (n, m, l=20) => {
   if (typeof l === "undefined") {
     return n + m;
   } else {
@@ -34,7 +34,7 @@ console.log(">>>>>>",withlvaluepassedAsArgumernt)
 
 
 // rest operator(...) . If we dont know about the number of arguments to be received by a function in that case we provide rest parameter 
-// to the function so that the function will receive all arguments as an array
+// to the function so that the function will receive all arguments in an array
 
 
 const funcrest = (...restparameters: number[]) => {
