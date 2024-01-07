@@ -1,9 +1,3 @@
-// type loginDetails = {
-//   name?: string;
-//   email: string;
-//   password: string;
-//   role: [User, Admin];
-// };
 
 // const user1: loginDetails = {
 //   email: "mishralikan88@gmail.com",
@@ -17,7 +11,12 @@
 //   role:"User"
 // };
 
+
+
+
 // Enums in Action
+
+// syntax -  enum enumName{enumprop1,enumprop2} or enum enumName{enumprop1=<value1>,enumprop2=<value2>}
 
 // enum Roles {
 //   user,  // Roles.user = 0 = default value
@@ -58,3 +57,7 @@ const isAdmin: (user1Obj: loginDetails) => string = (
     ? `${name} is allowed to edit the website`
     : `${name} is not allowed to edit the website`;
 };
+
+console.log(isAdmin(user1))
+console.log(isAdmin(user2))
+
