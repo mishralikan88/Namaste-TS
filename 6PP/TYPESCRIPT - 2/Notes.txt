@@ -1,3 +1,0 @@
-//  tsc -init => generates a config file for TS which is tsconfig
-
-//  dynamically typed Language => on runtime type of the variable is decided.

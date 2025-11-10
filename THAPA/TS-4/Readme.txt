@@ -1,1 +1,0 @@
-Boolean type represents value that can be either true or false . boolean type is one of the basic primitive types in ts language. 
