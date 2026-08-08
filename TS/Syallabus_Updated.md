@@ -32,15 +32,15 @@ noImplicitAny                                    - ✅ Done
 sourceMap                                        - ✅ Done 
 incremental compilation                          - ✅ Done 
 
-Chapter 3 — Primitive Types
-string
-number
-boolean
-bigint
-symbol
-null
-undefined
-void
+Chapter 3 — Primitive Types 
+string            - ✅ Done
+number            - ✅ Done
+boolean           - ✅ Done
+bigint            - ✅ Done
+symbol            - ✅ Done
+null              - ✅ Done
+undefined         - ✅ Done
+void              - ✅ Done
 
 Chapter 4 — Variables & Type Inference
 let
