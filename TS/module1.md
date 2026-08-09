@@ -11224,3 +11224,1562 @@ function greet(): void {
 
 void means a function does not return a useful value. 
 
+
+### Chapter 4 — Variables & Type Inference
+
+# 📍 Topic 4.1 — let
+
+let is simple, so we don't need to overcomplicate it.
+
+🤔 What is let?
+
+let is used to create a variable whose value can change later.
+
+let age = 30;
+
+age = 31;
+
+This works because variables created with let can be reassigned.
+
+Think:
+
+age
+ ↓
+30
+
+Later...
+
+age
+ ↓
+31
+
+The variable is the same. Its value changed.
+
+💡 Real-Life Analogy
+
+Think about a cricket score.
+
+score = 0
+
+↓ player scores
+
+score = 4
+
+↓ scores again
+
+score = 10
+
+The score keeps changing.
+
+So let makes sense:
+
+let score = 0;
+
+score = 4;
+score = 10;
+
+Use let when you know the value needs to change.
+
+💻 let with TypeScript Types
+
+You can explicitly specify the type:
+
+let userName: string = "Amarnath";
+let age: number = 33;
+let isLoggedIn: boolean = false;
+
+Later, you can change the values:
+
+userName = "Rahul";
+age = 34;
+isLoggedIn = true;
+
+✅ All valid because the new values have the correct types.
+
+🧠 TypeScript Can Infer the Type
+
+You don't always need:
+
+let age: number = 33;
+
+You can simply write:
+
+let age = 33;
+
+TypeScript sees 33 and understands:
+
+age → number
+
+Therefore:
+
+age = 34;      // ✅
+age = 100;     // ✅
+
+age = "hello"; // ❌
+
+Why is "hello" rejected?
+
+Because TypeScript already inferred age as a number.
+
+let age = 33
+        ↓
+TypeScript sees 33
+        ↓
+Infers number
+        ↓
+age should contain numbers
+
+We'll study Type Inference properly later in this chapter.
+
+⚠️ let Has Block Scope
+
+This is one important thing you should know.
+
+if (true) {
+    let message = "Hello";
+
+    console.log(message); // ✅
+}
+
+console.log(message); // ❌
+
+message exists only inside the { } block where it was declared.
+
+Think:
+
+if (...) {
+
+   ┌──────────────────┐
+   │ let message      │
+   │                  │
+   │ Can use it here  │
+   └──────────────────┘
+
+}
+
+Outside ❌
+
+This is called block scope.
+
+We'll compare this with var when we reach Topic 4.3.
+
+⚠️ Reassignment vs Redeclaration
+
+These are different.
+
+Reassignment ✅
+let age = 30;
+
+age = 31;
+
+You're changing the value of the existing variable.
+
+Redeclaration ❌
+let age = 30;
+let age = 31;
+
+You are trying to create age again in the same scope.
+
+That's not allowed.
+
+Reassignment
+
+let age = 30;
+age = 31;       ✅
+
+
+Redeclaration
+
+let age = 30;
+let age = 31;   ❌
+🏢 Simple Real-World Uses
+
+let is useful for values that change:
+
+let currentPage = 1;
+let loading = false;
+let totalPrice = 0;
+let searchText = "";
+
+Later:
+
+currentPage = 2;
+loading = true;
+totalPrice = 500;
+searchText = "laptop";
+
+These values represent changing state, so let is appropriate.
+
+🎤 Interview Answer
+
+What is let?
+
+"let is used to declare a block-scoped variable whose value can be reassigned."
+
+Example:
+
+let count = 0;
+count = 1;
+📌 Quick Revision
+                 let
+                  │
+        ┌─────────┴─────────┐
+        ↓                   ↓
+ Value can change       Block scoped
+        ↓
+ Can be reassigned
+let score = 10;
+
+score = 20;       // ✅ reassignment
+
+let score = 30;   // ❌ redeclaration
+🎯 One-Line Takeaway
+
+let = create a block-scoped variable whose value can change later.
+
+
+# 📍 Topic 4.2 — const
+
+const is very common in modern JavaScript and TypeScript.
+
+The basic idea:
+
+Use const when the variable should not be reassigned.
+
+🤔 First Question
+const age = 33;
+
+Can we later do this?
+
+age = 34;
+
+❌ No.
+
+Because age was declared using const.
+
+const age = 33
+      ↓
+age refers to this value
+
+age = 34
+      ↓
+❌ Reassignment not allowed
+💡 Real-Life Analogy
+
+Think about your date of birth.
+
+Your age changes, but your date of birth doesn't.
+
+const dateOfBirth = "09-09-1992";
+
+So:
+
+Changing value → let
+
+Fixed reference → const
+💻 const with TypeScript
+
+You can explicitly provide a type:
+
+const userName: string = "Amarnath";
+const age: number = 33;
+const isActive: boolean = true;
+
+But TypeScript can infer these types, so normally this is enough:
+
+const userName = "Amarnath";
+const age = 33;
+const isActive = true;
+
+We'll understand an important difference between const inference and let inference when we study Type Widening.
+
+⭐ const Must Have a Value
+
+This works with let:
+
+let age;
+
+age = 33;
+
+But you cannot write:
+
+const age; // ❌
+
+Why?
+
+Because const cannot later be reassigned.
+
+So it needs its initial value immediately:
+
+const age = 33; // ✅
+⚠️ Very Important — Objects with const
+
+This is where many beginners get confused.
+
+Look at:
+
+const user = {
+    name: "Amarnath",
+    age: 33
+};
+
+Can we change this?
+
+user.age = 34;
+
+✅ Yes!
+
+You can modify the properties of the object.
+
+user.name = "Rahul"; // ✅
+user.age = 34;       // ✅
+
+But you cannot replace the entire variable with another object:
+
+user = {
+    name: "Rahul",
+    age: 30
+}; // ❌
+
+Why?
+
+Because const prevents reassignment of the variable.
+
+It does NOT automatically make the object immutable.
+
+🧠 Easy Mental Model
+
+Imagine user holds a reference to an object:
+
+const user
+    │
+    │
+    ▼
+┌─────────────────┐
+│ name: "Amarnath"│
+│ age: 33         │
+└─────────────────┘
+
+You can modify what's inside:
+
+user.age = 34; // ✅
+const user
+    │
+    ▼
+┌─────────────────┐
+│ name: "Amarnath"│
+│ age: 34         │
+└─────────────────┘
+
+But you cannot make user point to a completely different object:
+
+user = anotherUser; // ❌
+So remember:
+
+const means constant binding/reference, not constant object contents.
+
+⭐ Same Thing with Arrays
+const numbers = [10, 20];
+
+This is allowed:
+
+numbers.push(30); // ✅
+
+Now:
+
+[10, 20, 30]
+
+But:
+
+numbers = [40, 50]; // ❌
+
+Again:
+
+Modify existing array → ✅
+
+Reassign variable
+to another array       → ❌
+
+Later we'll learn readonly and as const when we actually want TypeScript to restrict modification.
+
+🆚 let vs const
+
+This is the main difference:
+
+let	const
+Can be reassigned ✅	Cannot be reassigned ❌
+Block scoped	Block scoped
+Initial value can be omitted	Initial value is required
+
+Example:
+
+let score = 10;
+score = 20; // ✅
+
+const maxScore = 100;
+maxScore = 200; // ❌
+🏢 Which Should You Use?
+
+In modern TypeScript, a good general habit is:
+
+Will I reassign this variable?
+
+        │
+   ┌────┴────┐
+   │         │
+  YES        NO
+   │         │
+   ▼         ▼
+  let       const
+
+For example:
+
+const apiUrl = "/api/users";
+const user = { name: "Amarnath" };
+
+let currentPage = 1;
+let totalPrice = 0;
+
+Don't use let just because something might change. Use it when you actually intend to reassign the variable.
+
+🎤 Interview Answer
+
+What's the difference between let and const?
+
+"let and const are both block-scoped. A let variable can be reassigned, while a const variable cannot be reassigned. However, if a const contains an object or array, its contents can still be modified."
+
+That last sentence is important for interviews.
+
+📌 Quick Revision
+              const
+                │
+       ┌────────┴────────┐
+       ↓                 ↓
+ Block scoped       Must have value
+       │
+       ▼
+Cannot be reassigned
+
+But:
+
+const user = { age: 33 };
+
+user.age = 34;  // ✅ modify object
+
+user = {};      // ❌ reassign variable
+🎯 One-Line Takeaway
+
+const = a block-scoped variable that cannot be reassigned, although the contents of an object or array stored in it can still be modified.
+
+
+# 📍 Topic 4.3 — var
+
+var is the old way of declaring variables in JavaScript.
+
+Today, in modern TypeScript/JavaScript, we generally prefer:
+
+let
+const
+
+But you must understand var because you'll see it in older codebases and interviews.
+
+🤔 Basic Example
+var age = 30;
+
+age = 31; // ✅
+
+Like let, a var variable can be reassigned.
+
+It can also be redeclared:
+
+var age = 30;
+var age = 40; // ✅
+
+This is one major difference from let.
+
+let score = 10;
+let score = 20; // ❌
+
+So:
+
+             var        let
+Reassign     ✅          ✅
+Redeclare    ✅          ❌
+⭐ Most Important Difference — Scope
+
+let is block-scoped.
+
+if (true) {
+    let message = "Hello";
+}
+
+console.log(message); // ❌
+
+message exists only inside { }.
+
+But var is function-scoped, not block-scoped.
+
+if (true) {
+    var message = "Hello";
+}
+
+console.log(message); // ✅ Hello
+
+Think:
+
+let
+────────────
+{
+   let x = 10;
+
+   x works here ✅
+}
+
+x outside ❌
+
+
+var
+────────────
+{
+   var x = 10;
+}
+
+x can still exist outside ✅
+
+This behavior can make code harder to reason about.
+
+⚠️ var and Hoisting
+
+Another important difference is hoisting.
+
+Look:
+
+console.log(age);
+
+var age = 30;
+
+You might expect an immediate variable-access error.
+
+Instead, JavaScript behaves roughly like:
+
+var age;
+
+console.log(age); // undefined
+
+age = 30;
+
+So the declaration is effectively available before the line where you wrote it, while the assignment still happens later.
+
+This behavior is called:
+
+Hoisting
+
+We'll cover hoisting more deeply when JavaScript concepts require it. For var, just know that this behavior is another reason var can be confusing.
+
+🆚 var, let, const
+
+This is what you should remember:
+
+Feature	var	let	const
+Reassign	✅	✅	❌
+Redeclare in same scope	✅	❌	❌
+Block scoped	❌	✅	✅
+Modern preference	❌	✅	✅
+Practical rule
+Need reassignment?
+      │
+   ┌──┴──┐
+  YES    NO
+   │      │
+  let   const
+
+Usually avoid var.
+🎤 Interview Answer
+
+Why is let preferred over var?
+
+"let is block-scoped and doesn't allow redeclaration in the same scope, while var is function-scoped, allows redeclaration, and has hoisting behavior that can make code more error-prone."
+
+🎯 One-Line Takeaway
+
+var is the older function-scoped variable declaration; in modern TypeScript, prefer let for reassigned variables and const for variables that aren't reassigned.
+
+Function-scoped means a var variable is available everywhere inside the function where it was created, even if it was declared inside an if, for, or other { } block.
+
+function test() {
+    if (true) {
+        var name = "Amarnath";
+    }
+
+    console.log(name); // ✅ Amarnath
+}
+
+But outside that function:
+
+console.log(name); // ❌
+
+Think:
+
+function test() {
+
+   ┌──────────────────────┐
+   │                      │
+   │ if (...) {           │
+   │    var x = 10;       │
+   │ }                    │
+   │                      │
+   │ console.log(x); ✅   │
+   │                      │
+   └──────────────────────┘
+       Entire function
+       is var's scope
+}
+
+console.log(x); ❌
+
+That's why:
+
+var → function scoped
+let / const → block { } scoped.
+
+
+# 📍 Topic 4.4 — Type Inference
+
+This is an important TypeScript concept, so we'll understand the idea properly rather than memorize a definition.
+
+🤔 First Question
+
+Look at this:
+
+let age = 33;
+
+We did not write:
+
+let age: number = 33;
+
+So how does TypeScript know that age should be a number?
+
+Because it looks at:
+
+33
+
+and automatically figures out:
+
+"age is a number."
+
+This is called Type Inference.
+
+💡 What is Type Inference?
+
+Type inference means TypeScript automatically determines the type from the value you provide.
+
+For example:
+
+let name = "Amarnath";
+let age = 33;
+let isLoggedIn = true;
+
+TypeScript understands:
+
+"Amarnath"
+     ↓
+   string
+
+33
+ ↓
+number
+
+true
+ ↓
+boolean
+
+We didn't manually specify any types.
+
+TypeScript inferred them.
+
+🧠 Think Like This
+
+Imagine you give TypeScript three boxes:
+
+┌─────────────────┐
+│   "Amarnath"    │
+└─────────────────┘
+        ↓
+TypeScript looks inside
+        ↓
+     STRING
+
+
+┌─────────────────┐
+│       33        │
+└─────────────────┘
+        ↓
+TypeScript looks inside
+        ↓
+     NUMBER
+
+TypeScript says:
+
+"I can see what you gave me. You don't need to tell me the obvious type."
+
+💻 Inference vs Explicit Type
+Explicit type
+
+You tell TypeScript:
+
+let age: number = 33;
+
+Here you specified:
+
+number
+Type inference
+let age = 33;
+
+Here TypeScript determines:
+
+number
+
+In both cases, age behaves as a number.
+
+⭐ Type Safety Still Exists
+
+A common misunderstanding is:
+
+"If I don't write the type, does TypeScript stop checking?"
+
+❌ No.
+
+For example:
+
+let age = 33;
+
+TypeScript infers:
+
+age → number
+
+So this works:
+
+age = 40; // ✅
+
+But:
+
+age = "forty"; // ❌
+
+TypeScript complains because it already knows age is a number.
+
+So:
+
+No explicit type
+      ≠
+No type checking
+
+Type inference still gives you type safety.
+
+🏢 Why Is Type Inference Useful?
+
+Without inference, we'd write unnecessary types everywhere:
+
+const firstName: string = "Amarnath";
+const age: number = 33;
+const active: boolean = true;
+const price: number = 499;
+
+TypeScript already knows all of these.
+
+So we can simply write:
+
+const firstName = "Amarnath";
+const age = 33;
+const active = true;
+const price = 499;
+
+This makes the code:
+
+shorter + cleaner + still type-safe.
+
+⚠️ But Don't Think "Never Write Types"
+
+Inference is great when the type is obvious:
+
+const name = "Amarnath";
+const age = 33;
+
+But sometimes we do need explicit types, especially when TypeScript doesn't have enough information or when we intentionally want a broader contract.
+
+For example:
+
+let userName: string;
+
+There is no initial value for TypeScript to inspect.
+
+Later:
+
+userName = "Amarnath";
+
+We'll see much more important examples of explicit typing when we reach functions, objects, interfaces, APIs and generics.
+
+🔥 One Important Connection
+
+You already learned:
+
+let age = 33;
+
+TypeScript infers a type.
+
+But something interesting happens here:
+
+const age = 33;
+
+And here:
+
+let status = "active";
+const status = "active";
+
+TypeScript can treat these slightly differently because let can change while const cannot.
+
+That leads directly into our next topic: Type Widening.
+
+Don't learn it now—we'll build it separately.
+
+🎤 Interview Answer
+
+What is Type Inference?
+
+"Type inference is TypeScript's ability to automatically determine a type based on the value or context, without requiring us to explicitly write the type."
+
+Example:
+
+let age = 33;
+
+TypeScript automatically infers:
+
+age → number
+📌 Quick Revision
+let age = 33;
+          │
+          ▼
+TypeScript sees 33
+          │
+          ▼
+Infers → number
+
+Therefore:
+
+age = 40;      // ✅
+age = "hello"; // ❌
+🎯 One-Line Takeaway
+
+Type inference = TypeScript automatically figures out the type when it has enough information.
+
+✅ Topic 4.4 — Type Inference complete
+
+
+# 📍 Topic 4.5 — Type Widening
+
+This sounds difficult because of the word “widening”, but the idea is actually simple.
+
+🤔 Start With This
+let status = "active";
+
+What type should TypeScript give status?
+
+You might think:
+
+"active"
+
+But remember: let can change.
+
+status = "inactive";
+status = "pending";
+
+So TypeScript generally gives it the broader type:
+
+string
+
+This movement:
+
+"active"
+   ↓
+ string
+
+is Type Widening.
+
+Type widening means TypeScript changes a specific literal type into a broader type when appropriate.
+
+💡 Think Like This
+
+Suppose TypeScript sees:
+
+let score = 10;
+
+Since score can change:
+
+score = 20;
+score = 50;
+score = 100;
+
+it would be too restrictive to say:
+
+score can ONLY be 10
+
+Instead, TypeScript widens:
+
+10
+↓
+number
+
+So other numbers are allowed.
+
+⭐ Common Widening
+
+These are the important ones:
+
+let name = "Amarnath";
+"Amarnath" → string
+let age = 33;
+33 → number
+let active = true;
+true → boolean
+
+The specific values:
+
+"Amarnath"
+33
+true
+
+are called literal values, and TypeScript can also have corresponding literal types.
+
+We'll study Literal Types properly later.
+
+🔥 let vs const
+
+This is where widening becomes easier to understand.
+
+let
+let status = "active";
+
+Because status can be reassigned:
+
+status = "inactive"; // ✅
+
+TypeScript infers:
+
+status → string
+const
+const status = "active";
+
+status cannot be reassigned.
+
+status = "inactive"; // ❌
+
+So TypeScript can keep the more specific literal type:
+
+status → "active"
+
+Mental model:
+
+let status = "active"
+        ↓
+can change
+        ↓
+      string
+
+
+const status = "active"
+         ↓
+cannot be reassigned
+         ↓
+      "active"
+
+This difference becomes very useful later when we study literal types and as const.
+
+⚠️ Widening Doesn't Mean any
+
+This is important.
+
+If:
+
+let age = 33;
+
+widens:
+
+33 → number
+
+it does not mean:
+
+33 → any
+
+So:
+
+age = 50;      // ✅
+age = 100;     // ✅
+age = "hello"; // ❌
+
+TypeScript widened it only enough to become a normal number.
+
+🧠 Type Inference vs Type Widening
+
+You just learned Type Inference, so connect the two.
+
+let age = 33;
+Type Inference
+
+TypeScript looks at:
+
+33
+
+and determines its type.
+
+Type Widening
+
+Because age is a mutable let, TypeScript allows the broader:
+
+33 → number
+
+So you can think:
+
+let age = 33
+      │
+      ▼
+Type Inference
+      │
+      ▼
+Type Widening
+      │
+      ▼
+    number
+🎤 Interview Answer
+
+What is Type Widening?
+
+“Type widening is when TypeScript converts a specific literal type into a broader type, such as "active" to string or 10 to number.”
+
+Example:
+
+let status = "active";
+
+TypeScript generally infers:
+
+string
+
+rather than restricting status to only "active".
+
+📌 Quick Revision
+SPECIFIC               BROADER
+
+"hello"      ──────→   string
+   10        ──────→   number
+  true       ──────→   boolean
+
+And the important comparison:
+
+let status = "active";
+//  ^ string
+
+const status2 = "active";
+//    ^ "active"
+🎯 One-Line Takeaway
+
+Type widening = TypeScript broadens a specific literal type into a more general type when the value needs room to change.
+
+# 📍 Topic 4.6 — Type Narrowing
+
+Type Narrowing is very important in TypeScript, especially once we start working with Union Types, APIs, and functions.
+
+The name sounds complicated, but the idea is simple.
+
+🤔 Start With This
+
+Imagine a variable can contain either a string or a number:
+
+let value: string | number;
+
+value = "Hello";
+
+TypeScript initially knows:
+
+value
+  ↓
+string OR number
+
+Now suppose we check:
+
+if (typeof value === "string") {
+    // here
+}
+
+Inside this block, TypeScript knows:
+
+It can't be number anymore.
+        ↓
+It must be string.
+
+So its type becomes more specific:
+
+string | number
+       ↓
+     string
+
+That is Type Narrowing.
+
+Type Narrowing = TypeScript reduces a broad type into a more specific type based on checks in your code.
+
+💡 Think Like This
+
+Imagine a box contains either:
+
+📱 Phone
+   OR
+💻 Laptop
+
+Initially:
+
+What's inside?
+
+Phone OR Laptop
+
+Then you look inside and confirm:
+
+"It's a phone."
+
+Now the possibilities have narrowed:
+
+Phone OR Laptop
+      ↓
+    Phone
+
+TypeScript does the same thing with types.
+
+💻 Easy Example
+function printValue(value: string | number) {
+
+    if (typeof value === "string") {
+        console.log(value.toUpperCase());
+    }
+
+}
+
+Before the if:
+
+value → string | number
+
+Inside:
+
+if (typeof value === "string")
+
+TypeScript narrows it:
+
+string | number
+       ↓
+     string
+
+Therefore this is safe:
+
+value.toUpperCase();
+
+because .toUpperCase() is a string method.
+
+🔥 What Happens in else?
+
+Here's where TypeScript becomes useful:
+
+function printValue(value: string | number) {
+
+    if (typeof value === "string") {
+        console.log(value.toUpperCase());
+    } else {
+        console.log(value.toFixed(2));
+    }
+
+}
+
+TypeScript reasons:
+
+Initially:
+
+value
+ ↓
+string | number
+
+
+typeof value === "string" ?
+
+     ┌──── YES ────┐
+     ↓             │
+   string          │
+                   │
+     ┌──── NO ─────┘
+     ↓
+   number
+
+So inside else, TypeScript knows value must be a number.
+
+That's narrowing happening automatically.
+
+⭐ Another Common Example — null
+
+You already learned null.
+
+function printName(name: string | null) {
+
+Initially:
+
+name → string | null
+
+So blindly doing:
+
+name.toUpperCase();
+
+is unsafe because name might be null.
+
+But:
+
+function printName(name: string | null) {
+
+    if (name !== null) {
+        console.log(name.toUpperCase());
+    }
+
+}
+
+Inside the if:
+
+string | null
+      ↓
+   remove null
+      ↓
+    string
+
+That's also Type Narrowing.
+
+🧠 Widening vs Narrowing
+
+Now connect your previous topic with this one.
+
+Type Widening
+
+Goes from specific → broader:
+
+"active"
+   ↓
+ string
+Type Narrowing
+
+Goes from broader → specific:
+
+string | number
+       ↓
+     string
+
+Easy memory:
+
+WIDENING
+Specific → Broad
+
+NARROWING
+Broad → Specific
+⚠️ Don't Memorize All Narrowing Techniques Yet
+
+Later in Chapter 25 — Type Guards, you'll properly learn:
+
+typeof
+instanceof
+in
+custom type guards
+type predicates
+
+Those are ways to perform narrowing.
+
+Right now, you only need to understand the concept:
+
+if (typeof value === "string") {
+
+TypeScript uses that information to understand:
+
+"Inside here, value is definitely a string."
+
+We don't need to turn this chapter into the Type Guards chapter.
+
+🎤 Interview Answer
+
+What is Type Narrowing?
+
+"Type narrowing is when TypeScript uses checks in our code to reduce a broader type into a more specific type."
+
+Example:
+
+function display(value: string | number) {
+    if (typeof value === "string") {
+        console.log(value.toUpperCase());
+    }
+}
+
+Here:
+
+string | number
+       ↓
+typeof check
+       ↓
+string
+📌 Quick Revision
+        TYPE NARROWING
+
+       string | number
+              │
+              │ typeof value === "string"
+              ▼
+            string
+
+Compare:
+
+WIDENING
+
+"hello" → string
+
+
+NARROWING
+
+string | number → string
+🎯 One-Line Takeaway
+
+Type Narrowing = TypeScript uses checks in your code to move from a broader type to a more specific type.
+
+# 📍 Topic 4.7 — Const Assertions (as const)
+
+This is the final topic of Chapter 4. It connects directly with what you learned about const and Type Widening.
+
+🤔 First Understand the Problem
+
+Look at this object:
+
+const user = {
+    role: "admin"
+};
+
+You may think TypeScript sees:
+
+role → "admin"
+
+But generally it infers:
+
+role → string
+
+Why?
+
+Because even though user is const, its properties can still change:
+
+user.role = "manager"; // ✅
+
+Remember:
+
+const prevents reassignment of the variable, not modification of the object's properties.
+
+💡 Now Add as const
+const user = {
+    role: "admin"
+} as const;
+
+Now TypeScript treats it much more strictly.
+
+Conceptually:
+
+Without as const
+
+role → string
+
+
+With as const
+
+role → "admin"
+        +
+     readonly
+
+So this now fails:
+
+user.role = "manager"; // ❌
+⭐ What Does as const Actually Do?
+
+For our current level, remember two important effects.
+
+1. Keeps literal types narrow
+
+Without it:
+
+const config = {
+    mode: "dark"
+};
+
+TypeScript generally sees:
+
+mode → string
+
+With:
+
+const config = {
+    mode: "dark"
+} as const;
+
+TypeScript keeps:
+
+mode → "dark"
+
+It doesn't widen "dark" into string.
+
+2. Makes properties readonly
+const config = {
+    mode: "dark"
+} as const;
+
+config.mode = "light"; // ❌
+
+TypeScript treats mode as readonly.
+
+So mentally:
+
+as const
+   │
+   ├── Don't widen literal values
+   │
+   └── Make properties readonly
+🧠 const vs as const
+
+This distinction is very important.
+
+Only const
+const user = {
+    role: "admin"
+};
+
+user.role = "manager"; // ✅
+
+The variable user cannot point to another object:
+
+user = { role: "manager" }; // ❌
+
+But the existing object's property can change.
+
+const + as const
+const user = {
+    role: "admin"
+} as const;
+
+user.role = "manager"; // ❌
+
+Think:
+
+const
+  ↓
+Don't reassign the variable
+
+
+as const
+  ↓
+Keep literal values specific
++
+properties become readonly
+⭐ Arrays Also Change
+
+Normal:
+
+const numbers = [10, 20, 30];
+
+numbers.push(40); // ✅
+
+With as const:
+
+const numbers = [10, 20, 30] as const;
+
+numbers.push(40); // ❌
+
+TypeScript treats it as a readonly tuple whose values stay specific:
+
+readonly [10, 20, 30]
+
+You don't need to go deeper into tuples here—we have a dedicated chapter for them.
+
+🏢 Simple Practical Example
+
+Imagine fixed application roles:
+
+const roles = {
+    ADMIN: "admin",
+    USER: "user"
+} as const;
+
+These values are intended to be fixed.
+
+Now TypeScript preserves:
+
+ADMIN → "admin"
+USER  → "user"
+
+instead of simply:
+
+ADMIN → string
+USER  → string
+
+This becomes very useful later when we create types from constant objects.
+
+We'll learn that when we reach typeof, keyof, and literal types.
+
+⚠️ One Important Point
+
+as const is a TypeScript compile-time feature.
+
+It doesn't freeze the object at JavaScript runtime.
+
+So don't mentally treat:
+
+as const
+
+as the same thing as:
+
+Object.freeze()
+
+For now:
+
+as const tells TypeScript to treat values as fixed/narrow and readonly.
+
+🎤 Interview Answer
+
+What does as const do in TypeScript?
+
+"as const prevents literal type widening and makes object properties and arrays readonly."
+
+Example:
+
+const config = {
+    mode: "dark"
+} as const;
+
+TypeScript keeps:
+
+mode → "dark"
+
+instead of widening it to:
+
+mode → string
+📌 Quick Revision
+const config = {
+   mode: "dark"
+};
+
+mode → string
+modifiable property ✅
+
+vs.
+
+const config = {
+   mode: "dark"
+} as const;
+
+mode → "dark"
+readonly property 🔒
+🎯 One-Line Takeaway
+
+as const tells TypeScript: keep these values as specific literal types and treat the properties/elements as readonly.
+
+
+
+
+
