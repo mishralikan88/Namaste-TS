@@ -12780,6 +12780,10 @@ readonly property 🔒
 as const tells TypeScript: keep these values as specific literal types and treat the properties/elements as readonly.
 
 
+### Chapter 5 — Functions
+
+
+
 
 
 

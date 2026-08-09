@@ -44,13 +44,13 @@ void              - ✅ Done
 
 Chapter 4 — Variables & Type Inference
 
-let 
-const
-var
-Type Inference
-Type Widening
-Type Narrowing
-Const Assertions (as const)
+let                          - ✅ Done
+const                        - ✅ Done
+var                          - ✅ Done
+Type Inference               - ✅ Done
+Type Widening                - ✅ Done
+Type Narrowing               - ✅ Done
+Const Assertions (as const)  - ✅ Done
 
 Chapter 5 — Functions
 Function Syntax
