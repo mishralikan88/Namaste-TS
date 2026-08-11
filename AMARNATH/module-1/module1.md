@@ -12783,7 +12783,2713 @@ as const tells TypeScript: keep these values as specific literal types and treat
 ### Chapter 5 — Functions
 
 
+## 📍 Topic 5.1 — Function Syntax
+
+We'll keep this topic short and easy because function syntax itself isn't difficult. The more important function topics come later.
+
+🤔 What is a Function?
+
+A function is a reusable block of code that performs a task.
+
+Instead of writing the same code repeatedly:
+
+console.log("Hello Amarnath");
+console.log("Hello Amarnath");
+console.log("Hello Amarnath");
+
+We can create a function:
+
+function greet() {
+    console.log("Hello Amarnath");
+}
+
+Then use it whenever needed:
+
+greet();
+greet();
+greet();
+
+Think:
+
+Create once
+    ↓
+function greet() { ... }
+    ↓
+Call whenever needed
+    ↓
+greet()
+💡 Real-Life Analogy
+
+Think about a coffee machine.
+
+Press button
+     ↓
+Coffee machine performs its job
+     ↓
+Coffee ☕
+
+A function works similarly:
+
+Call function
+     ↓
+Function executes its code
+     ↓
+Produces a result / performs a task
+💻 Basic Function Syntax
+function greet() {
+    console.log("Hello");
+}
+
+Break it down:
+
+function greet() {
+   // code
+}
+   ↑      ↑
+keyword  function name
+
+More clearly:
+
+function   greet   ()   {
+   ↑         ↑      ↑
+keyword     name   parameters
+
+    console.log("Hello");
+    ↑
+ function body
+}
+Calling the function
+
+Creating a function doesn't automatically execute it.
+
+function greet() {
+    console.log("Hello");
+}
+
+We execute it using:
+
+greet();
+
+Output:
+
+Hello
+⭐ Function with Input
+
+A function can receive information:
+
+function greet(name: string) {
+    console.log("Hello " + name);
+}
+
+Call it:
+
+greet("Amarnath");
+
+Output:
+
+Hello Amarnath
+
+Here:
+
+name: string
+     ↓
+The function expects a string
+
+Don't go deeper into this yet.
+
+Parameters are Topic 5.2.
+
+⭐ Function Returning a Value
+
+A function can also give something back:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+Use it:
+
+const result = add(10, 20);
+
+Now:
+
+result → 30
+
+The : number after ) describes the return type.
+
+Again, don't memorize this yet. Return Types are Topic 5.6.
+
+For now, just understand the overall structure:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+    │       │                    │
+    │       │                    └─ Function body
+    │       └─ Inputs
+    └─ Function name
+🧠 TypeScript vs JavaScript Function
+
+JavaScript:
+
+function add(a, b) {
+    return a + b;
+}
+
+TypeScript:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+TypeScript lets us describe what types the function expects and returns.
+
+Therefore:
+
+add(10, 20);       // ✅
+add("10", "20");   // ❌
+
+This is one of the biggest reasons TypeScript is useful with functions.
+
+🏢 Simple Practical Example
+function calculatePrice(price: number, quantity: number): number {
+    return price * quantity;
+}
+
+const total = calculatePrice(500, 3);
+
+Result:
+
+price     → 500
+quantity  → 3
+              ↓
+        calculatePrice()
+              ↓
+            1500
+🎤 Interview Answer
+
+What is a function in TypeScript?
+
+A function is a reusable block of code that can accept typed inputs, perform some logic, and optionally return a typed value.
+
+📌 Quick Revision
+function add(a: number, b: number): number {
+    return a + b;
+}
+function → function keyword
+
+add      → function name
+
+a, b     → parameters
+
+number   → parameter types
+
+:number  → return type
+
+{ ... }  → function body
+
+add()    → function call
+🎯 One-Line Takeaway
+
+Function = reusable code that can receive inputs, perform a task, and return a result.
+
+## 📍 Topic 5.2 — Parameters
+
+This topic is important, but the basic idea is easy.
+
+🤔 What is a Parameter?
+
+Look at this function:
+
+function greet(name: string) {
+    console.log("Hello " + name);
+}
+
+Here:
+
+name
+ ↓
+Parameter
+
+A parameter is a variable that a function receives as input.
+
+When we call:
+
+greet("Amarnath");
+
+"Amarnath" goes into name:
+
+"Amarnath"
+     ↓
+   name
+     ↓
+greet()
+     ↓
+Hello Amarnath
+⭐ Parameter vs Argument
+
+This distinction is worth knowing.
+
+When creating the function:
+
+function greet(name: string) {
+}
+
+name is the parameter.
+
+When calling the function:
+
+greet("Amarnath");
+
+"Amarnath" is the argument.
+
+Easy memory:
+
+PARAMETER
+↓
+Placeholder in function definition
+
+ARGUMENT
+↓
+Actual value passed when calling
+
+Example:
+
+function greet(name: string) {
+//             ↑
+//          parameter
+}
+
+greet("John");
+//    ↑
+// argument
+💻 TypeScript Parameter Types
+
+TypeScript lets us specify what type a parameter accepts.
+
+function greet(name: string) {
+    console.log(name);
+}
+
+Now:
+
+greet("John"); // ✅
+greet(100);    // ❌
+
+Why?
+
+Because:
+
+name: string
+      ↓
+Only strings allowed
+⭐ Multiple Parameters
+
+Functions can have multiple parameters.
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+Call:
+
+add(10, 20);
+
+Think:
+
+a ← 10
+b ← 20
+
+   ↓
+
+10 + 20
+
+   ↓
+
+  30
+
+Each parameter can have its own type.
+
+function createUser(
+    name: string,
+    age: number,
+    active: boolean
+) {
+    // ...
+}
+
+Usage:
+
+createUser("John", 30, true); // ✅
+
+But:
+
+createUser(30, "John", true); // ❌
+
+The order and types must match.
+
+⚠️ Missing Arguments
+
+Suppose:
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+This is correct:
+
+add(10, 20); // ✅
+
+But:
+
+add(10); // ❌
+
+TypeScript complains because b is required.
+
+By default:
+
+Normal parameters are required.
+
+Soon we'll learn how to make one optional:
+
+function greet(name?: string) {}
+
+But that's the next topic — Optional Parameters.
+
+🧠 Why Parameter Types Matter
+
+Consider plain JavaScript:
+
+function add(a, b) {
+    return a + b;
+}
+
+add(10, "20");
+
+Result:
+
+"1020"
+
+That may be an accidental bug.
+
+With TypeScript:
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+add(10, "20"); // ❌
+
+TypeScript catches the problem before the code runs.
+
+That's one major benefit of typing function parameters.
+
+🏢 Practical Example
+function calculateTotal(
+    price: number,
+    quantity: number
+) {
+    return price * quantity;
+}
+
+calculateTotal(500, 3); // ✅ 1500
+
+TypeScript protects the function:
+
+calculateTotal("500", 3); // ❌
+
+because price must be a number.
+
+🎤 Interview Answer
+
+What are parameters in TypeScript functions?
+
+Parameters are variables defined in a function that receive values when the function is called. TypeScript allows us to specify their types for type safety.
+
+function greet(name: string) {
+    console.log(name);
+}
+
+Here name is a string parameter.
+
+📌 Quick Revision
+function add(a: number, b: number) {
+    return a + b;
+}
+
+add(10, 20);
+a, b        → Parameters
+
+number      → Parameter types
+
+10, 20      → Arguments
+
+Normal
+parameters → Required by default
+🎯 One-Line Takeaway
+
+Parameter = the input variable defined by a function; argument = the actual value you pass to it.
+
+
+## 📍 Topic 5.3 — Optional Parameters
+
+An optional parameter is a function parameter that you don't have to provide when calling the function.
+
+In TypeScript, we make a parameter optional using ?.
+
+function greet(name?: string) {
+    console.log(name);
+}
+
+Here:
+
+name?: string
+     ↑
+     ?
+
+Optional parameter
+
+So both calls are valid:
+
+greet("Amarnath"); // ✅
+greet();            // ✅
+Why do we need optional parameters?
+
+Imagine a function that creates a user:
+
+function createUser(
+    name: string,
+    age?: number
+) {
+    // ...
+}
+
+Every user must have a name, but maybe age isn't required.
+
+So:
+
+createUser("Amarnath", 33); // ✅
+createUser("Amarnath");     // ✅
+
+Think of it as:
+
+name: string
+     ↓
+REQUIRED
+
+
+age?: number
+     ↓
+OPTIONAL
+⭐ What type does an optional parameter actually have?
+
+This is the important TypeScript part.
+
+When you write:
+
+function greet(name?: string) {
+}
+
+name might contain:
+
+string
+   OR
+undefined
+
+Conceptually:
+
+name?: string
+
+behaves like:
+
+string | undefined
+
+because if you call:
+
+greet();
+
+there was no value provided for name.
+
+That's why this can be unsafe:
+
+function greet(name?: string) {
+    console.log(name.toUpperCase()); // ❌
+}
+
+TypeScript says:
+
+name could be undefined.
+
+We can check it first:
+
+function greet(name?: string) {
+    if (name !== undefined) {
+        console.log(name.toUpperCase());
+    }
+}
+
+Now TypeScript narrows:
+
+string | undefined
+        ↓
+      string
+
+That's the Type Narrowing concept you just learned.
+
+⚠️ Optional parameters normally come after required parameters
+
+Good:
+
+function createUser(
+    name: string,
+    age?: number
+) {}
+
+But don't do:
+
+function createUser(
+    age?: number,
+    name: string
+) {}
+
+❌ A required parameter cannot follow an optional parameter.
+
+Easy rule:
+
+Required → Required → Optional → Optional
+🆚 Required vs Optional
+function greet(name: string) {}
+
+You must provide name:
+
+greet("Amarnath"); // ✅
+greet();            // ❌
+
+With:
+
+function greet(name?: string) {}
+
+both work:
+
+greet("Amarnath"); // ✅
+greet();            // ✅
+🎤 Interview Answer
+
+What is an optional parameter in TypeScript?
+
+An optional parameter is a parameter that doesn't have to be provided when calling a function. It is declared using ? and may be undefined.
+
+function greet(name?: string) {}
+🎯 One-Line Takeaway
+
+parameter?: Type = the argument can be provided or omitted, so the parameter may be undefined.
+
+
+## 📍 Topic 5.4 — Default Parameters
+
+A default parameter gives a parameter a value that will be used automatically when no argument is provided.
+
+🤔 Simple Example
+function greet(name: string = "Guest") {
+    console.log("Hello " + name);
+}
+
+Now:
+
+greet("Amarnath"); // Hello Amarnath
+greet();            // Hello Guest
+
+What's happening?
+
+greet("Amarnath")
+       ↓
+name = "Amarnath"
+
+
+greet()
+   ↓
+No name provided
+   ↓
+name = "Guest"
+
+Default parameter = fallback value when an argument isn't provided.
+
+💡 Another Example
+
+Suppose an e-commerce function calculates a price:
+
+function calculatePrice(
+    price: number,
+    quantity: number = 1
+) {
+    return price * quantity;
+}
+
+If quantity is provided:
+
+calculatePrice(500, 3);
+// 1500
+
+If quantity isn't provided:
+
+calculatePrice(500);
+// 500
+
+Because:
+
+quantity not provided
+        ↓
+quantity = 1
+
+This is a very common use case for defaults.
+
+⭐ TypeScript Knows the Type
+
+Look at:
+
+function greet(name = "Guest") {
+    console.log(name);
+}
+
+We didn't write:
+
+name: string
+
+TypeScript sees "Guest" and infers:
+
+name → string
+
+So this is also valid and often cleaner:
+
+function greet(name = "Guest") {}
+
+Instead of:
+
+function greet(name: string = "Guest") {}
+
+Both are valid.
+
+🆚 Optional vs Default Parameter
+
+Don't confuse these.
+
+Optional
+function greet(name?: string) {}
+
+Inside the function:
+
+name → string | undefined
+
+because name might not exist.
+
+Default
+function greet(name = "Guest") {}
+
+If nothing is passed, "Guest" is used.
+
+Optional
+name?: string
+      ↓
+Could be undefined
+
+
+Default
+name = "Guest"
+      ↓
+Missing argument gets "Guest"
+
+That's the key difference.
+
+⚠️ One Small Detail
+
+Passing undefined also activates the default:
+
+function greet(name = "Guest") {
+    console.log(name);
+}
+
+greet(undefined);
+// Guest
+
+But null does not activate the default:
+
+greet(null); // ❌ with this inferred string parameter
+
+So mentally:
+
+missing argument → default ✅
+undefined        → default ✅
+🏢 Practical Examples
+function fetchUsers(page = 1) {
+    // fetch page...
+}
+fetchUsers();  // page = 1
+fetchUsers(5); // page = 5
+
+Another:
+
+function sendMessage(
+    message: string,
+    priority = "normal"
+) {
+    // ...
+}
+
+The caller only specifies priority when they want something different.
+
+🎤 Interview Answer
+
+What is a default parameter?
+
+A default parameter provides a fallback value when an argument is omitted or undefined.
+
+function greet(name = "Guest") {}
+📌 Quick Revision
+function greet(name = "Guest") {}
+greet("John")
+     ↓
+name = "John"
+
+greet()
+     ↓
+name = "Guest"
+🎯 One-Line Takeaway
+
+Default parameter = automatically use a fallback value when an argument isn't provided.
+
+
+If you pass null, the default value is not used.
+
+function greet(name = "Guest") {
+    console.log(name);
+}
+
+greet();          // "Guest" ✅
+greet(undefined); // "Guest" ✅
+greet(null);      // ❌ TypeScript error
+
+Why the error? TypeScript inferred name as string, and null isn't a string under strictNullChecks.
+
+If you intentionally want to allow null:
+
+function greet(name: string | null = "Guest") {
+    console.log(name);
+}
+
+greet(null); // ✅ name is actually null
+
+But notice: null still does NOT become "Guest".
+
+Easy rule: missing / undefined → default kicks in. null → treated as an actual value.
+
+
+default parameters have special JavaScript behavior for undefined.
+
+function greet(name = "Guest") {
+    console.log(name);
+}
+
+When you do:
+
+greet(undefined);
+
+JavaScript interprets that as:
+
+“This parameter has no usable value, so use its default.”
+
+Therefore:
+
+undefined
+    ↓
+default activates
+    ↓
+"Guest"
+
+But null is different. null is considered an explicit value you deliberately passed:
+
+greet(null)
+      ↓
+"You explicitly gave me null"
+      ↓
+Default does NOT activate
+
+So remember this rule:
+
+undefined → default value kicks in ✅
+null → default value does not kick in ❌
+
+And yes, normally a string parameter wouldn't accept undefined. Default parameters are the special case: TypeScript allows undefined because JavaScript specifically uses it to trigger the default.
+
+
+## 📍 Topic 5.5 — Rest Parameters
+
+A rest parameter allows a function to accept a variable number of arguments and collect them into an array.
+
+🤔 The Problem
+
+A normal function has a fixed number of parameters:
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+So:
+
+add(10, 20); // ✅
+
+But what if we want to pass any number of values?
+
+add(10, 20, 30, 40, 50);
+
+Instead of creating more and more parameters, we use a rest parameter.
+
+💡 Rest Parameter Syntax
+function add(...numbers: number[]) {
+    console.log(numbers);
+}
+
+Now:
+
+add(10, 20);
+add(10, 20, 30);
+add(10, 20, 30, 40, 50);
+
+All are valid. ✅
+
+The important part is:
+
+...numbers: number[]
+
+It means:
+
+Accept any number of number arguments and collect them into an array called numbers.
+
+For example:
+
+add(10, 20, 30, 40);
+
+Inside the function:
+
+numbers → [10, 20, 30, 40]
+           ↓
+        number[]
+
+That's why the type is number[], not number.
+
+💻 Using the Collected Values
+
+Because numbers is an array, we can work with it like an array:
+
+function add(...numbers: number[]) {
+    let total = 0;
+
+    for (const number of numbers) {
+        total += number;
+    }
+
+    return total;
+}
+
+Now:
+
+add(10, 20);         // 30
+add(10, 20, 30);     // 60
+add(10, 20, 30, 40); // 100
+⭐ Regular Parameters + Rest Parameter
+
+A rest parameter can be combined with normal parameters:
+
+function greet(
+    message: string,
+    ...names: string[]
+) {
+    console.log(message, names);
+}
+
+Call:
+
+greet("Hello", "John", "Sam", "David");
+
+TypeScript receives:
+
+message → "Hello"
+
+names → ["John", "Sam", "David"]
+
+The normal parameter receives its argument, and the rest parameter collects everything remaining.
+
+⚠️ Rest Parameter Must Be Last
+
+Correct:
+
+function greet(
+    message: string,
+    ...names: string[]
+) {}
+
+Incorrect:
+
+function greet(
+    ...names: string[],
+    message: string
+) {}
+
+❌ A rest parameter must be the last parameter, because it collects all remaining arguments.
+
+⭐ Zero Arguments Are Allowed
+function logNumbers(...numbers: number[]) {
+    console.log(numbers);
+}
+
+logNumbers();
+
+Here:
+
+numbers → []
+
+So a rest parameter can collect zero or more arguments.
+
+⚠️ Type Safety Still Applies
+function add(...numbers: number[]) {}
+
+Valid:
+
+add(10, 20, 30); // ✅
+
+Invalid:
+
+add(10, "20", 30); // ❌
+
+Every argument collected into numbers must match the element type number.
+
+🎤 Interview Answer
+
+What is a rest parameter in TypeScript?
+
+A rest parameter allows a function to accept a variable number of arguments and collects them into an array. It must be the last parameter.
+
+function add(...numbers: number[]) {}
+📌 Quick Revision
+add(10, 20, 30, 40)
+          ↓
+     ...numbers
+          ↓
+ [10, 20, 30, 40]
+          ↓
+       number[]
+
+Key rules:
+
+...numbers: number[]
+        ↓
+Variable number of arguments
+        ↓
+Collected into an array
+
+Rest parameter → must be last
+Zero arguments → allowed
+Type checking  → still applies
+🎯 One-Line Takeaway
+
+Rest parameter = use ... to collect zero or more remaining arguments into an array.
+
+
+## 📍 Topic 5.6 — Return Types
+
+A return type tells TypeScript what type of value a function gives back after it finishes.
+
+🤔 Simple Example
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+Here:
+
+a: number
+b: number
+    ↓
+INPUT TYPES
+
+:number
+   ↓
+RETURN TYPE
+
+So:
+
+const result = add(10, 20);
+
+TypeScript knows:
+
+result → number
+
+Easy distinction:
+
+Parameter types = what goes IN.
+Return type = what comes OUT.
+
+⭐ TypeScript Can Infer Return Types
+
+You don't always need to explicitly write the return type.
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+TypeScript sees:
+
+number + number
+      ↓
+    number
+
+So it infers:
+
+add() → number
+
+Therefore both are valid:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+and:
+
+function add(a: number, b: number) {
+    return a + b;
+}
+
+The first has an explicit return type.
+
+The second uses return type inference.
+
+🔥 Why Explicit Return Types Are Useful
+
+An explicit return type acts like a contract.
+
+function calculateTotal(
+    price: number,
+    quantity: number
+): number {
+    return price * quantity;
+}
+
+We're telling TypeScript:
+
+This function must return a number.
+
+If someone accidentally changes it:
+
+function calculateTotal(
+    price: number,
+    quantity: number
+): number {
+    return "₹" + price * quantity; // ❌
+}
+
+Now the function returns a string, but we promised number.
+
+TypeScript catches the error.
+
+Expected → number
+Received → string
+
+This is particularly useful in larger codebases and public APIs.
+
+⭐ Different Return Types
+
+A function can return a string:
+
+function getName(): string {
+    return "John";
+}
+
+A boolean:
+
+function isAdult(age: number): boolean {
+    return age >= 18;
+}
+
+An object:
+
+function getUser(): { name: string; age: number } {
+    return {
+        name: "John",
+        age: 30
+    };
+}
+
+Return types can also be:
+
+User[]
+Promise<User>
+string | null
+
+A return type can be any valid TypeScript type.
+
+⚠️ Every Return Must Match
+
+If we declare:
+
+function getStatus(active: boolean): string {
+    if (active) {
+        return "Active";
+    }
+
+    return 100; // ❌
+}
+
+We promised:
+
+:string
+
+but one path returns:
+
+number
+
+Correct:
+
+function getStatus(active: boolean): string {
+    if (active) {
+        return "Active";
+    }
+
+    return "Inactive"; // ✅
+}
+
+So the values returned by the function must satisfy its declared return type.
+
+⭐ Return Type With Multiple Possibilities
+
+A function can return more than one possible type.
+
+type User = {
+    id: number;
+    name: string;
+};
+
+function findUser(id: number): User | null {
+    // search for user...
+    return null;
+}
+
+The return type is:
+
+User | null
+
+So:
+
+const user = findUser(1);
+
+means:
+
+user
+ ↓
+User OR null
+
+Therefore this is unsafe:
+
+console.log(user.name); // ❌
+
+because user might be null.
+
+We handle that possibility first:
+
+if (user !== null) {
+    console.log(user.name); // ✅
+}
+
+Inside the if, TypeScript narrows:
+
+User | null
+     ↓
+remove null
+     ↓
+User
+
+So when a function returns multiple possible types, the caller may need to check/narrow the returned value before using it.
+
+🧠 What About void and undefined?
+
+This is an important return-type distinction.
+
+Case 1 — Function doesn't return a value
+function logMessage(message: string) {
+    console.log(message);
+}
+
+There is no explicit returned value.
+
+TypeScript generally infers:
+
+logMessage() → void
+
+Think:
+
+void = the function doesn't provide a useful return value to the caller.
+
+At JavaScript runtime, reaching the end of the function without returning a value produces undefined.
+
+Case 2 — Explicitly returning undefined
+
+Now look at:
+
+function test() {
+    return undefined;
+}
+
+Here, TypeScript can infer:
+
+test() → undefined
+
+Compare:
+
+function first() {
+    console.log("Hello");
+}
+
+function second() {
+    return undefined;
+}
+
+Conceptually:
+
+first()
+No explicit returned value
+        ↓
+       void
+
+
+second()
+return undefined
+        ↓
+    undefined
+
+So:
+
+No useful value returned → void
+
+Explicit return undefined → undefined
+
+And remember: undefined is also a TypeScript type, not only a JavaScript runtime value.
+
+We will connect this more directly to void functions in Topic 5.7, without repeating the whole explanation.
+
+🎤 Interview Answer
+
+What is a return type in TypeScript?
+
+A return type specifies the type of value a function returns. It can be explicitly declared or inferred by TypeScript.
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+Here:
+
+:number
+   ↓
+Return type
+📌 Quick Revision
+function input types
+        ↓
+     Function
+        ↓
+   Return type
+
+Key points:
+
+Explicit :number
+      ↓
+Function must return number
+
+No explicit return type
+      ↓
+TypeScript can infer it
+
+User | null
+      ↓
+Multiple possible return types
+      ↓
+Caller may need narrowing
+
+No useful returned value
+      ↓
+void
+
+Explicit return undefined
+      ↓
+undefined
+🎯 One-Line Takeaway
+
+Return type = the type of value a function gives back; TypeScript can infer it or we can declare it explicitly.
 
 
 
 
+## 📍 Topic 5.7 — Void Functions
+
+A void function is a function whose return value is not intended to be used by the caller.
+
+This commonly happens when a function's purpose is simply to perform an action.
+
+🤔 Basic Example
+function greet(name: string): void {
+    console.log("Hello " + name);
+}
+
+The function performs an action:
+
+greet("John")
+     ↓
+Print "Hello John"
+     ↓
+No useful value returned
+
+That's why its return type is:
+
+:void
+⭐ Returning a Value vs void
+
+A function that returns a useful value:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+const result = add(10, 20);
+
+Here:
+
+add()
+ ↓
+30
+ ↓
+Useful returned value
+
+Compare that with:
+
+function printMessage(message: string): void {
+    console.log(message);
+}
+
+Here:
+
+printMessage()
+      ↓
+Performs an action
+      ↓
+No useful returned value
+
+So:
+
+number → useful number returned
+
+void   → no useful return value expected
+⭐ Common Uses of void
+
+void is common when a function's job is to perform an action.
+
+For example, logging:
+
+function logError(message: string): void {
+    console.error(message);
+}
+
+An event handler:
+
+function handleClick(): void {
+    console.log("Button clicked");
+}
+
+Or a function that performs some operation without giving a result back:
+
+function saveUser(): void {
+    // save user
+}
+
+The important idea is:
+
+Perform action
+     ↓
+Finish
+     ↓
+No useful result for caller
+🧠 TypeScript Can Infer void
+
+You don't always have to write : void.
+
+function greet() {
+    console.log("Hello");
+}
+
+Because there is no explicit returned value, TypeScript generally infers:
+
+greet() → void
+
+So these represent the same basic return behavior:
+
+function greet(): void {
+    console.log("Hello");
+}
+function greet() {
+    console.log("Hello");
+}
+🔥 void vs undefined
+
+This is the important distinction we discussed in the previous topic.
+
+Consider:
+
+function greet() {
+    console.log("Hello");
+}
+
+At the TypeScript type level, its inferred return type is:
+
+void
+
+But at JavaScript runtime, because the function reaches the end without explicitly returning a value:
+
+const result = greet();
+
+the runtime result is:
+
+undefined
+
+So:
+
+TypeScript return type → void
+
+JavaScript runtime result → undefined
+
+void communicates:
+
+The caller should not expect a useful returned value.
+
+⭐ What If We Explicitly Return undefined?
+
+Now consider:
+
+function test() {
+    return undefined;
+}
+
+Here TypeScript can infer:
+
+test() → undefined
+
+Compare:
+
+function first() {
+    console.log("Hello");
+}
+first() → void
+
+versus:
+
+function second() {
+    return undefined;
+}
+second() → undefined
+
+So for our current level:
+
+No explicit returned value
+        ↓
+       void
+
+
+Explicit return undefined
+        ↓
+    undefined
+
+And remember: undefined is itself also a TypeScript type, not just a runtime value.
+
+⚠️ Don't Confuse the Two Ideas
+void
+ ↓
+No useful return value is expected
+from the function
+
+undefined
+ ↓
+The value/type is specifically undefined
+
+A function with no explicit return still evaluates to undefined at JavaScript runtime.
+
+So void does not mean JavaScript produces some special void value.
+
+🎤 Interview Answer
+
+What does void mean in a TypeScript function?
+
+void indicates that a function does not provide a useful return value to its caller.
+
+Example:
+
+function logMessage(message: string): void {
+    console.log(message);
+}
+
+If a JavaScript function reaches the end without explicitly returning a value, its runtime result is undefined.
+
+📌 Quick Revision
+function performs an action
+        +
+no explicit returned value
+        ↓
+       void
+
+But at runtime:
+
+No explicit return
+       ↓
+   undefined
+
+And:
+
+return undefined;
+
+can give:
+
+Return type → undefined
+
+So remember:
+
+void
+→ no useful return value expected
+
+undefined
+→ specifically the undefined value/type
+🎯 One-Line Takeaway
+
+void means a function doesn't provide a useful value to its caller; a function with no explicit return evaluates to undefined at JavaScript runtime.
+
+
+## 📍 Topic 5.8 — Function Types
+
+A function type describes the type of function that a variable, parameter, or other value can hold.
+
+It specifies:
+
+What parameters does the function accept?
+              +
+What type does it return?
+🤔 Start With a Normal Function
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+This function:
+
+Takes   → number, number
+Returns → number
+
+We can describe that function's type as:
+
+(a: number, b: number) => number
+
+Read it as:
+
+A function that takes two numbers and returns a number.
+
+So:
+
+(a: number, b: number) => number
+ └────── inputs ──────┘    └output┘
+💻 Assigning a Function Type to a Variable
+
+We can declare a variable that is allowed to hold a particular kind of function:
+
+let calculate: (a: number, b: number) => number;
+
+This does not create or execute a function.
+
+It only tells TypeScript:
+
+calculate
+    ↓
+must hold a function
+    ↓
+takes 2 numbers
+    ↓
+returns a number
+
+Now we can assign a matching function:
+
+calculate = function (a, b) {
+    return a + b;
+};
+
+✅ Valid because its shape matches the required function type.
+
+⭐ Assigning an Existing Function
+
+We can also do:
+
+function add(x: number, y: number): number {
+    return x + y;
+}
+
+let calculate: (a: number, b: number) => number;
+
+calculate = add; // ✅
+
+Notice:
+
+Required → (a: number, b: number) => number
+
+add      → (x: number, y: number) => number
+
+The parameter names are different, but that doesn't matter here.
+
+What matters is that the function has compatible:
+
+Parameter types
+      +
+Return type
+❌ What If the Function Doesn't Match?
+let calculate: (a: number, b: number) => number;
+
+function greet(name: string): string {
+    return "Hello " + name;
+}
+
+calculate = greet; // ❌
+
+calculate requires:
+
+(number, number) → number
+
+But greet is:
+
+string → string
+
+The function types don't match, so TypeScript reports an error.
+
+⭐ Reusable Function Types
+
+Instead of repeatedly writing:
+
+(a: number, b: number) => number
+
+we can give that function type a name:
+
+type MathOperation =
+    (a: number, b: number) => number;
+
+Then:
+
+const add: MathOperation = (a, b) => {
+    return a + b;
+};
+
+const multiply: MathOperation = (a, b) => {
+    return a * b;
+};
+
+Both functions must follow:
+
+MathOperation
+      ↓
+(number, number) → number
+
+We're only using type here to understand function types. Type Aliases are covered properly later.
+
+🔥 Function Types as Parameters
+
+Function types become especially useful when a function needs to receive another function.
+
+function runOperation(
+    operation: (a: number, b: number) => number
+) {
+    return operation(10, 20);
+}
+
+Here:
+
+operation: (a: number, b: number) => number
+
+means operation must be a function that:
+
+accepts → number, number
+returns → number
+
+So a matching function can be passed:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+runOperation(add); // ✅
+
+This idea becomes especially important with callback functions.
+
+⚠️ Normal Function vs Function Type
+
+Don't confuse these:
+
+Actual function
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+This contains actual executable code.
+
+Function type
+(a: number, b: number) => number
+
+This does not execute anything.
+
+It only describes the required shape of a function.
+
+Function
+   ↓
+Actual behavior/code
+
+Function Type
+   ↓
+Description of the function's
+parameters + return type
+🎤 Interview Answer
+
+What is a function type in TypeScript?
+
+A function type describes the parameter types and return type that a function must have.
+
+Example:
+
+let calculate:
+    (a: number, b: number) => number;
+
+Meaning:
+
+Takes   → two numbers
+Returns → number
+📌 Quick Revision
+let calculate:
+    (a: number, b: number) => number;
+(a: number, b: number)
+          ↓
+       INPUTS
+
+          =>
+
+       number
+          ↓
+        OUTPUT
+
+Function types can be used to:
+
+Describe a function's shape
+        ↓
+Type variables holding functions
+        ↓
+Create reusable function types
+        ↓
+Type function parameters/callbacks
+🎯 One-Line Takeaway
+
+Function Type = a description of the parameters a function accepts and the type of value it returns.
+
+## 📍 Topic 5.9 — Arrow Functions
+
+Arrow functions are mainly a shorter way of writing functions.
+
+You’ll see them constantly in modern TypeScript, especially later with React, callbacks, array methods, and APIs.
+
+🤔 Normal Function vs Arrow Function
+
+Normal function:
+
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+Arrow function:
+
+const add = (a: number, b: number): number => {
+    return a + b;
+};
+
+Both can do the same job:
+
+Normal Function
+function add(...) { }
+
+        ↓
+
+Arrow Function
+const add = (...) => { }
+
+The => is why it's called an arrow function.
+
+💡 Basic Syntax
+const greet = (name: string): void => {
+    console.log("Hello " + name);
+};
+
+Break it down:
+
+const greet = (name: string): void => {
+     ↑            ↑          ↑
+   variable    parameter   arrow
+
+    console.log("Hello " + name);
+};
+
+Then call it normally:
+
+greet("John");
+
+Output:
+
+Hello John
+
+So calling an arrow function is no different:
+
+greet("John");
+⭐ Returning a Value
+const add = (a: number, b: number): number => {
+    return a + b;
+};
+const result = add(10, 20);
+
+Result:
+
+30
+
+Everything you've already learned still applies:
+
+a: number
+b: number
+     ↓
+Parameter types
+
+:number
+     ↓
+Return type
+🔥 Short Arrow Function
+
+Here's one of the main reasons arrow functions are popular.
+
+This:
+
+const add = (a: number, b: number): number => {
+    return a + b;
+};
+
+can be shortened to:
+
+const add = (a: number, b: number): number => a + b;
+
+When there's only one expression, we can remove:
+
+{ }
+return
+
+The returned value is automatic.
+
+So:
+
+const double = (num: number) => num * 2;
+
+means the same as:
+
+const double = (num: number) => {
+    return num * 2;
+};
+
+This is called an implicit return.
+
+🧠 TypeScript Can Infer the Return Type
+
+You can write:
+
+const add = (a: number, b: number) => {
+    return a + b;
+};
+
+TypeScript understands:
+
+number + number
+      ↓
+    number
+
+So it infers:
+
+add() → number
+
+You don't always need:
+
+:number
+
+Same Type Inference concept you've already learned.
+
+⭐ Very Common Real-World Usage
+
+You'll frequently see arrow functions with array methods:
+
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map(
+    number => number * 2
+);
+
+Don't worry about map() right now.
+
+Later, especially in React, you'll see things like:
+
+const handleClick = () => {
+    console.log("Clicked");
+};
+
+And:
+
+const fetchUser = async () => {
+    // ...
+};
+
+So becoming comfortable reading arrow syntax is important.
+
+⚠️ Arrow Functions Aren't Exactly Identical to Normal Functions
+
+There are differences, especially around:
+
+this
+arguments
+constructors
+hoisting
+
+The most important one is that arrow functions don't have their own this.
+
+But we should not go into that now. It will make a simple topic unnecessarily difficult.
+
+You'll understand this much better once we reach classes, objects, and callbacks.
+
+For now:
+
+Arrow functions are a concise function syntax that you'll see everywhere in modern TypeScript.
+
+🎤 Interview Answer
+
+What is an arrow function?
+
+An arrow function is a shorter syntax for writing a function using =>.
+
+const add = (a: number, b: number): number => {
+    return a + b;
+};
+
+It can also use an implicit return:
+
+const add = (a: number, b: number) => a + b;
+🎯 One-Line Takeaway
+
+Arrow function = concise function syntax using =>; a single expression can be returned automatically.
+
+
+## 📍 Topic 5.10 — Callback Functions
+
+Callbacks are very important in JavaScript and TypeScript. You’ll see them later in React, event handlers, array methods, APIs, etc.
+
+But the core idea is simple:
+
+A callback is a function that we pass into another function.
+
+🤔 Start With a Normal Value
+
+You already know we can pass a value into a function:
+
+function greet(name: string) {
+    console.log("Hello " + name);
+}
+
+greet("John");
+
+Here we're passing:
+
+"John"
+  ↓
+greet()
+
+But JavaScript also allows us to pass a function itself:
+
+someFunction
+     ↓
+anotherFunction(someFunction)
+
+That passed function is called a callback.
+
+💡 Easy Example
+
+First, create a function:
+
+function sayHello() {
+    console.log("Hello!");
+}
+
+Now another function:
+
+function execute(callback: () => void) {
+    callback();
+}
+
+Call it:
+
+execute(sayHello);
+
+What happens?
+
+sayHello
+   ↓
+passed into execute()
+   ↓
+execute receives it as "callback"
+   ↓
+callback()
+   ↓
+sayHello runs
+   ↓
+"Hello!"
+
+So sayHello is the callback function.
+
+⭐ Understand This Syntax
+
+This part might initially look strange:
+
+callback: () => void
+
+But you already learned Function Types.
+
+It simply means:
+
+callback:
+    ↓
+must be a function
+
+() 
+↓
+takes no parameters
+
+void
+↓
+returns no useful value
+
+So:
+
+function execute(callback: () => void) {
+    callback();
+}
+
+means:
+
+"execute expects a function as its argument."
+
+🔥 Important: Passing vs Calling
+
+Look carefully:
+
+execute(sayHello);
+
+We write:
+
+sayHello
+
+not:
+
+sayHello()
+
+Why?
+
+Because:
+
+sayHello
+↓
+the function itself
+↓
+PASS IT
+
+Whereas:
+
+sayHello()
+↓
+CALL the function immediately
+
+This distinction is very important.
+
+Inside execute, we finally call it:
+
+callback();
+
+So:
+
+execute(sayHello)
+        ↓
+Pass function
+
+callback()
+    ↓
+Call function
+⭐ Callback With Parameters
+
+A callback can also receive values.
+
+function processUser(
+    name: string,
+    callback: (name: string) => void
+) {
+    callback(name);
+}
+
+Now:
+
+function greet(name: string) {
+    console.log("Hello " + name);
+}
+
+processUser("John", greet);
+
+Flow:
+
+"John" + greet
+      ↓
+ processUser()
+      ↓
+callback(name)
+      ↓
+ greet("John")
+      ↓
+ "Hello John"
+
+Nothing magical is happening.
+
+callback is simply holding the greet function.
+
+⭐ Arrow Functions as Callbacks
+
+This is extremely common.
+
+Instead of creating:
+
+function greet(name: string) {
+    console.log("Hello " + name);
+}
+
+processUser("John", greet);
+
+we can directly pass an arrow function:
+
+processUser("John", (name) => {
+    console.log("Hello " + name);
+});
+
+That arrow function is the callback.
+
+You've probably seen code like this:
+
+button.addEventListener("click", () => {
+    console.log("Clicked!");
+});
+
+The function:
+
+() => {
+    console.log("Clicked!");
+}
+
+is a callback.
+
+It is passed to addEventListener, and the browser calls it when the click happens.
+
+🧠 Why Do We Need Callbacks?
+
+Because sometimes we want to tell another function:
+
+"Here is some code. Run this code when you need it."
+
+For example:
+
+User clicks button
+       ↓
+Run callback
+
+API finishes
+       ↓
+Run callback
+
+Array processes item
+       ↓
+Run callback
+
+You'll see callbacks constantly later.
+
+🏢 Real-World Example
+
+You've probably seen:
+
+const numbers = [1, 2, 3];
+
+numbers.forEach((number) => {
+    console.log(number);
+});
+
+This part:
+
+(number) => {
+    console.log(number);
+}
+
+is a callback function.
+
+We're essentially telling forEach:
+
+"For every number, run this function."
+
+🎤 Interview Answer
+
+What is a callback function?
+
+A callback is a function passed as an argument to another function so that the receiving function can call it.
+
+Example:
+
+function execute(callback: () => void) {
+    callback();
+}
+
+function sayHello() {
+    console.log("Hello");
+}
+
+execute(sayHello);
+
+Here, sayHello is the callback.
+
+📌 Quick Revision
+function sayHello() { ... }
+
+        ↓ PASS
+
+execute(sayHello)
+
+        ↓
+
+callback = sayHello
+
+        ↓ CALL
+
+callback()
+
+        ↓
+
+sayHello runs
+
+And remember the crucial difference:
+
+sayHello   → pass the function
+
+sayHello() → execute the function
+🎯 One-Line Takeaway
+
+Callback = a function passed into another function so that the other function can call it.
+
+
+## 📍 Topic 5.11 — Function Overloading
+
+The name sounds difficult, but the idea is:
+
+Function overloading lets us describe multiple valid ways to call the same function.
+
+🤔 Start With the Problem
+
+Imagine we want one function called format.
+
+Sometimes we give it a string:
+
+format("hello");
+
+And sometimes a number:
+
+format(100);
+
+We want TypeScript to know that both calls are valid.
+
+With function overloading, we can describe both possibilities.
+
+💻 Basic Example
+function format(value: string): string;
+function format(value: number): string;
+
+function format(value: string | number): string {
+    return String(value);
+}
+
+Then:
+
+format("hello"); // ✅
+format(100);     // ✅
+
+At first, those three function lines can look weird. So let's separate them.
+
+⭐ Part 1 — Overload Signatures
+
+These:
+
+function format(value: string): string;
+function format(value: number): string;
+
+are called overload signatures.
+
+They tell TypeScript:
+
+format(string) → string
+
+OR
+
+format(number) → string
+
+Notice they have no { } body.
+
+They only describe the allowed ways to call the function.
+
+⭐ Part 2 — Implementation
+
+Then we write the actual function once:
+
+function format(value: string | number): string {
+    return String(value);
+}
+
+This is the implementation signature/body.
+
+Think:
+
+Overload 1 ─┐
+            │
+Overload 2 ─┼──→ ONE actual function
+            │
+            └──→ implementation
+
+So we're not creating multiple functions.
+
+There is still only one actual JavaScript function.
+
+The overloads are TypeScript information.
+
+🧠 Why Not Just Use a Union?
+
+Good question.
+
+Sometimes this is perfectly enough:
+
+function format(value: string | number): string {
+    return String(value);
+}
+
+You don't need overloads for everything.
+
+Overloads become especially useful when the input affects the output type.
+
+For example:
+
+function convert(value: string): number;
+function convert(value: number): string;
+
+function convert(value: string | number): string | number {
+    if (typeof value === "string") {
+        return Number(value);
+    }
+
+    return String(value);
+}
+
+Now TypeScript knows:
+
+const a = convert("100");
+
+a is:
+
+number
+
+But:
+
+const b = convert(100);
+
+b is:
+
+string
+
+That's powerful.
+
+TypeScript understands the relationship:
+
+string input → number output
+
+number input → string output
+🔥 The Important Rule
+
+The implementation must be able to handle all overloads.
+
+If we declare:
+
+function format(value: string): string;
+function format(value: number): string;
+
+our implementation needs to handle both:
+
+function format(value: string | number): string {
+    return String(value);
+}
+
+Think:
+
+Overloads
+   ↓
+"What callers are allowed to do"
+
+Implementation
+   ↓
+"Code that handles those possibilities"
+⚠️ One Thing That Confuses Beginners
+
+You might see:
+
+function format(value: string): string;
+function format(value: number): string;
+function format(value: string | number): string {
+    return String(value);
+}
+
+and think:
+
+"Did we create format three times?"
+
+No.
+
+Conceptually:
+
+First line  → Type information
+Second line → Type information
+Third       → Actual implementation
+
+After TypeScript compiles to JavaScript, the overload type declarations disappear.
+
+There's just the actual function implementation.
+
+🏢 Practical Idea
+
+Imagine a search function that supports different inputs:
+
+function search(id: number): User;
+function search(email: string): User;
+
+function search(value: number | string): User {
+    // search logic...
+}
+
+Now callers can understand immediately:
+
+search(123)              ✅
+search("john@email.com") ✅
+
+Same function name, multiple supported call patterns.
+
+🎤 Interview Answer
+
+What is function overloading in TypeScript?
+
+Function overloading allows us to define multiple call signatures for the same function while providing one implementation.
+
+function convert(value: string): number;
+function convert(value: number): string;
+
+function convert(value: string | number): string | number {
+    // implementation
+}
+📌 Quick Revision
+FUNCTION OVERLOADING
+
+Same function name
+       ↓
+Multiple valid call signatures
+       ↓
+One implementation
+
+Example:
+
+convert(string) → number
+convert(number) → string
+
+        ↓
+
+ONE implementation handles both
+🎯 One-Line Takeaway
+
+Function Overloading = multiple ways to call the same function, with one actual implementation.
+
+
+
+here’s a full before-and-after example showing exactly why overloads can be better than a union return type.
+
+❌ BEFORE — Union Return Type
+
+Imagine convert() works like this:
+
+Give it a string → it converts it to a number
+Give it a number → it converts it to a string
+function convert(value: string | number): string | number {
+    if (typeof value === "string") {
+        return Number(value);
+    } else {
+        return String(value);
+    }
+}
+
+Now call it:
+
+const result = convert("100");
+
+We humans know:
+
+"100"
+  ↓
+string input
+  ↓
+Number("100")
+  ↓
+100
+  ↓
+number
+
+But because the function's declared return type is:
+
+string | number
+
+TypeScript sees:
+
+result
+  ↓
+string | number
+
+So this can fail:
+
+result.toFixed(2); // ❌
+
+Why?
+
+Because toFixed() belongs to number, but TypeScript thinks result could also be a string.
+
+We can fix it with narrowing
+const result = convert("100");
+
+if (typeof result === "number") {
+    console.log(result.toFixed(2));
+}
+
+Now:
+
+result
+   ↓
+string | number
+   ↓
+typeof check
+   ↓
+number
+   ↓
+toFixed() ✅
+
+This works.
+
+But we had to do an extra check.
+
+✅ AFTER — Function Overloading
+
+Now let's describe the relationship precisely:
+
+function convert(value: string): number;
+function convert(value: number): string;
+
+function convert(value: string | number): string | number {
+    if (typeof value === "string") {
+        return Number(value);
+    } else {
+        return String(value);
+    }
+}
+
+Now call:
+
+const result = convert("100");
+
+TypeScript looks at the overload:
+
+function convert(value: string): number;
+
+We passed a string, therefore:
+
+"100"
+  ↓
+matches string overload
+  ↓
+return type = number
+  ↓
+result → number
+
+So we can directly do:
+
+result.toFixed(2); // ✅
+
+No narrowing required.
+
+And if we do:
+
+const result2 = convert(100);
+
+TypeScript matches:
+
+function convert(value: number): string;
+
+Therefore:
+
+100
+ ↓
+number input
+ ↓
+return type = string
+ ↓
+result2 → string
+
+So:
+
+result2.toUpperCase(); // ✅
+🧠 Whole Difference
+
+Union version:
+
+convert("100")
+      ↓
+string | number
+      ↓
+Need narrowing
+      ↓
+typeof result === "number"
+      ↓
+number
+
+Overload version:
+
+convert("100")
+      ↓
+TypeScript matches string overload
+      ↓
+number
+      ↓
+Use directly ✅
+
+So union + narrowing isn't wrong.
+
+But when the input determines the output, overloads can give the caller the exact return type immediately.
+
+That is the real benefit of overloads in this example.

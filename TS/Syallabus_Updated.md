@@ -1,6 +1,6 @@
 https://chatgpt.com/c/6a65b0c4-70e0-83e8-9743-11b3bff4b945
 
-🟢 MODULE 1 — TypeScript Fundamentals
+#### 🟢 MODULE 1 — TypeScript Fundamentals
 
 Chapter 1 — Introduction to TypeScript
 What is TypeScript?       - ✅ Done 
@@ -53,20 +53,22 @@ Type Narrowing               - ✅ Done
 Const Assertions (as const)  - ✅ Done
 
 Chapter 5 — Functions
-Function Syntax
-Parameters
-Optional Parameters
-Default Parameters
-Rest Parameters
-Return Types
-Void Functions
-Function Types
-Arrow Functions
-Callback Functions
-Function Overloading
+
+Function Syntax                - ✅ Done       
+Parameters                     - ✅ Done 
+Optional Parameters            - ✅ Done 
+Default Parameters             - ✅ Done 
+Rest Parameters                - ✅ Done 
+Return Types                   - ✅ Done 
+Void Functions                 - ✅ Done 
+Function Types                 - ✅ Done 
+Arrow Functions                - ✅ Done 
+Callback Functions             - ✅ Done 
+Function Overloading           - ✅ Done 
 
 
-🟢 MODULE 2 — Core Type System
+#### 🟢 MODULE 2 — Core Type System
+
 Chapter 6 — Objects
 Chapter 7 — Arrays
 Chapter 8 — Tuples
@@ -93,7 +95,7 @@ Chapter 19 — Nested Object Types
 
 
 
-🟡 MODULE 3 — Advanced Type System
+#### 🟡 MODULE 3 — Advanced Type System
 Chapter 20 — any
 Chapter 21 — unknown
 Chapter 22 — never
@@ -113,7 +115,8 @@ Chapter 27 — Exhaustiveness Checking
 Chapter 28 — Assertion Functions
 
 
-🔵 MODULE 4 — Generics
+#### 🔵 MODULE 4 — Generics
+
 Chapter 29 — Generic Fundamentals
 Chapter 30 — Generic Functions
 Chapter 31 — Generic Interfaces
@@ -124,7 +127,8 @@ Chapter 35 — Generic Default Types
 Chapter 36 — Variance Basics
 
 
-🟣 MODULE 5 — Type Manipulation
+#### 🟣 MODULE 5 — Type Manipulation
+
 Chapter 37 — keyof
 Chapter 38 — typeof
 Chapter 39 — Indexed Access Types
@@ -137,7 +141,8 @@ Chapter 45 — Variadic Tuple Types
 Chapter 46 — Recursive Conditional Types
 
 
-🟠 MODULE 6 — Built-in Utility Types
+#### 🟠 MODULE 6 — Built-in Utility Types
+
 Chapter 47 — Partial
 Chapter 48 — Required
 Chapter 49 — Readonly
@@ -157,7 +162,8 @@ Chapter 62 — OmitThisParameter
 Chapter 63 — ThisType
 
 
-🔴 MODULE 7 — Object-Oriented TypeScript
+### 🔴 MODULE 7 — Object-Oriented TypeScript
+
 Chapter 64 — Classes
 Chapter 65 — Constructors
 Chapter 66 — Access Modifiers
@@ -174,7 +180,8 @@ Chapter 73 — Mixins
 Chapter 74 — Decorators
 
 
-🟤 MODULE 8 — Modules & Project Structure
+### 🟤 MODULE 8 — Modules & Project Structure
+
 Chapter 75 — ES Modules
 Chapter 76 — CommonJS
 Chapter 77 — import type
@@ -185,7 +192,8 @@ Chapter 81 — Module Resolution
 Chapter 82 — Path Aliases
 
 
-🟢 MODULE 9 — TypeScript with React
+#### 🟢 MODULE 9 — TypeScript with React
+
 Chapter 83 — Typing Props
 Chapter 84 — Children
 Chapter 85 — Component State
@@ -206,7 +214,8 @@ Chapter 99 — Generic Components
 Chapter 100 — Polymorphic Components
 
 
-🔵 MODULE 10 — TypeScript with Node.js
+#### 🔵 MODULE 10 — TypeScript with Node.js
+
 Chapter 101 — Express
 Chapter 102 — Request Typing
 Chapter 103 — Response Typing
@@ -215,7 +224,8 @@ Chapter 105 — JWT Authentication Types
 Chapter 106 — Environment Variables
 
 
-🟠 MODULE 11 — Enterprise TypeScript
+#### 🟠 MODULE 11 — Enterprise TypeScript
+
 Chapter 107 — Project Folder Structure
 Chapter 108 — Domain Models
 Chapter 109 — DTOs (Data Transfer Objects)
@@ -228,7 +238,8 @@ Chapter 115 — Large-Scale Application Architecture
 Chapter 116 — Sharing Types Across Projects (Monorepos)
 
 
-🟣 MODULE 12 — TypeScript Internals
+### 🟣 MODULE 12 — TypeScript Internals
+
 Chapter 117 — TypeScript Compiler Architecture
 Chapter 118 — Abstract Syntax Tree (AST)
 Chapter 119 — Type Checker
@@ -239,7 +250,8 @@ Chapter 123 — Declaration Files (.d.ts)
 Chapter 124 — Compiler Performance & Optimization
 
 
-🔴 MODULE 13 — Advanced Type-Level Programming
+# 🔴 MODULE 13 — Advanced Type-Level Programming
+
 Chapter 125 — Type-Level Programming Fundamentals
 Chapter 126 — Building Custom Utility Types
 Chapter 127 — Implementing Partial<T>
@@ -252,7 +264,8 @@ Chapter 133 — JSON Type Modeling
 Chapter 134 — Recursive Generic Utilities
 
 
-⚫ MODULE 14 — Debugging, Best Practices & Interview Preparation
+### ⚫ MODULE 14 — Debugging, Best Practices & Interview Preparation
+
 Chapter 135 — Understanding TypeScript Compiler Errors
 Chapter 136 — Fixing Type Inference Issues
 Chapter 137 — Common Production Pitfalls
@@ -264,6 +277,5 @@ Chapter 142 — Enterprise Case Studies & Real-World Problems
 Chapter 143 — Type Challenges (Easy → Hard)
 Chapter 144 — Complete TypeScript Cheat Sheet & Final Recap
 
-===
 
-APi repsone generic types and whatever needed 
+## APi repsone generic types and whatever needed 
